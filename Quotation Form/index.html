@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+    rel="stylesheet">
+  <title>Quotation</title>
+  <link rel="icon" href="img/favicon.png" type="image/gif" sizes="16x16">
+  <link rel="stylesheet" href="form.css">
+
+</head>
+
+<body>
+
+  <form class="is-readonly">
+  <section id="pdf">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <div class="dwn_btn"><input type="button" value="Download" id="print" onclick="Print()">
+    <input type="button" value="Cancel" id="cancel">
+  </div >
+    <div class="upper_section">
+        <table>
+          <tr>
+            <td>
+              <div class="container">
+                <div class="form-group">
+                  <input type="text" class="form-control is-disabled name" id="exampleInputPassword1" placeholder="Mangya Singh"
+                    disabled>
+                </div>
+                <div class="form-group">
+                  <input type="tel" class="form-control is-disabled number" id="exampleInputEmail1"
+                    placeholder="+91 8989898989" disabled>
+                </div>
+                <div class="form-group">
+                  <input type="email" class="form-control is-disabled mail" id="exampleInputEmail1"
+                    placeholder="company@gmail.com" disabled>
+                </div>
+
+    </div>
+    </td>
+    <td class="top-right">
+      <div class="form-group">
+        <input type="text" class="form-control is-disabled title cap" id="exampleInputPassword2"
+          placeholder="WEBSITE DEVELOPMENT QUOTE" disabled>
+        <input type="text" class="form-control is-disabled cap title_number quote_num" id="exampleInputPassword2"
+          placeholder="SB04" disabled>
+      </div>
+
+      <div class="form-group">
+        <div class=" title cap">DATE</div>
+        <input type="date" class="form-control is-disabled cap title_number quote_num" id="exampleInputPassword2"
+          placeholder="SB04" disabled>
+      </div>
+
+      <div class="form-group">
+        <div class=" title cap">TOTAL</div>
+        <div class="title_number"><input value="INR ₹" type="text" name="txtcurrency" class="txtcurrency" style="pointer-events: none;" disabled><div class="totalincome">XXXX</div></div>
+      </div>
+    </td>
+    </tr>
+    </table>
+
+    <div class="to">
+      <div class=" title cap">TO</div>
+      <div class="form-group">
+        <input type="text" class="form-control is-disabled name" id="exampleInputPassword1" placeholder="Pakya Sharma" disabled>
+      </div>
+      <div class="form-group">
+        <input type="tel" class="form-control is-disabled number" id="exampleInputEmail1" placeholder="+91 8989898989"
+          disabled>
+      </div>
+      <div class="form-group">
+        <input type="email" class="form-control is-disabled mail" id="exampleInputEmail1"
+          placeholder="company@gmail.com" disabled>
+      </div>
+    </div>
+
+    <table class="last_table">
+      <tr>
+        <th>DESCRIPTION</th>
+        <th>AMOUNT</th>
+      </tr>
+      <tr class="static_row">
+        <td>
+          <div class="form-group">
+            <input type="text" class="form-control is-disabled name" id="exampleInputPassword1" placeholder="Home Page"
+              disabled>
+            <div class="additional_field">
+              <div class=" title">Duration:</div><input type="text" class="form-control is-disabled name"
+                id="exampleInputPassword1" placeholder="15 days" disabled>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <input type="text" class="form-control is-disabled price" placeholder="XXXX" id="id_1" disabled>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>TOTAL</th>
+        <th class="title_number"><input value="INR ₹" type="text" name="txtcurrency" class="txtcurrencys" style="pointer-events: none;" disabled><div class="totalincome">XXXX</div></th>
+      </tr>
+    </table>
+
+    </div>
+    <script>
+      function Print() {
+        $('#print').hide();
+        setTimeout(function () {
+            window.print();
+            window.close();
+            }, 1000)
+            return true;
+      }
+    </script>
+  </section>
+
+  <section id="changes">
+    
+    <button type="button" class="btn btn-default btn-edit js-edit">Edit</button>
+    <button type="button" class="btn btn-default btn-save js-save">Save</button>
+    
+    <div id="preview" class="restrict" value="Preview">Preview</div>
+
+    <select name="currency" id="currency">
+      <option value="INR ₹">INR</option>
+      <option value="USD $">USD</option>
+      <option value="EUR €">EUR</option>
+    </select>
+
+
+  </section>
+</form>
+
+<div class="mobile_only">
+  Only available on desktop
+</div>
+
+  <script src="form.js"></script>
+
+</body>
+
+</html>

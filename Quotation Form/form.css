@@ -1,0 +1,283 @@
+:root {
+    --small: 14px;
+    --medium: 18px;
+  }
+
+  @media print
+    {
+      *{
+        padding: 0px;
+        margin: 0px;
+      }
+        #changes, .dwn_btn { display: none; }
+        #pdf { display: block; top:0 !important;height:24cm !important;box-shadow:none !important }
+  }
+
+
+  body {
+    font-family: 'Roboto', sans-serif;
+    color: #454545;
+  }
+  input{
+    font-family: 'Roboto', sans-serif;
+  }
+
+  form.is-readonly .btn-save {
+    display: none;
+  }
+
+  form.is-readonly input[disabled],
+  form.is-readonly textarea[disabled] {
+    cursor: text;
+    background-color: #fff;
+    border-color: transparent;
+    outline-color: transparent;
+    box-shadow: none;
+  }
+
+  form.is-editing .btn-edit {
+    display: none;
+  }
+  input:disabled {
+  background: transparent;
+  border: none;
+  color: #454545;
+}
+
+  table {
+    width: 100%;
+    border-bottom: 1px solid #454545;
+    padding-bottom: 25px;
+  }
+
+  .name {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.5;
+  }
+
+  .number,
+  .mail,
+  .title_number {
+    font-size: 14px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .quote_num{
+    text-align: right;
+    display: inline;
+  }
+  input.txtcurrency, input.txtcurrencys {
+    border: navajowhite;
+    outline: none;
+    text-align: right;
+    padding-right: 3px !important; 
+  }
+  .totalincome{
+    font-weight: 400;
+    padding-top: 1px;
+  }
+  table.last_table th, table.last_table td {
+    font-size: var(--small);
+    }
+    .last_table .name, .last_table .price {
+        font-size: var(--small);
+    }
+
+    input[type="date"]{position: relative;}
+    ::-webkit-calendar-picker-indicator {
+      position: absolute;
+      left: -30px;
+    }
+  [name="txtcurrency"]{font-size: var(--small);}
+  table.last_table tr:last-child th {
+    height: 40px;
+}
+  .cap{
+    text-transform: uppercase;
+  }
+
+  .title {
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 600;
+    width: 100%;
+    font-size: 14px;
+    line-height: 2;
+  }
+  .top-right{
+    text-align: right;
+  }
+  .top-right .title{
+    text-align: right;
+  }
+  .top-right .form-group {
+  margin-bottom: 12px;
+  }
+  .to{
+    padding-top: 45px;
+  }
+
+  th{
+    border-top: 1px solid #454545;
+    border-bottom: 1px solid #454545;
+    padding: 8px;
+  }
+  .last_table{
+    padding-top:25px;
+    border-bottom: 0
+  }
+  .static_row td{
+    padding: 8px;
+  }
+  .row_removable td{
+    border-top: 1px dotted #454545;
+    padding: 8px;
+  }
+  table.last_table th:first-child, table.last_table td:first-child {
+  text-align: left;
+  }
+  table.last_table th:last-child, table.last_table td:last-child, table.last_table td:last-child input {
+  text-align: right;
+  }
+
+  /* Additional field */
+  .last_table input{
+    padding: 0;
+  }
+  .additional_field{
+    display: flex;
+    align-items: baseline;
+  }
+  .additional_field .title{
+    width: auto;
+    font-weight: 400;
+    font-size: var(--small);
+  }
+  .additional_field input{
+    width: auto;
+    font-weight: 400;
+    font-size: var(--small);
+  }
+
+  /* Amount */
+ .price{
+     font-size: var(--medium);
+ }
+
+  /* Section css */
+  form{display:flex}
+  #pdf{
+      border-top: 4px solid #558B2F;
+      background-color: #fff;
+      box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 10px;
+      padding:30px 35px;
+      height:29.7cm;
+      width:21cm;
+      margin: auto;
+      top: 0;
+      position: relative;
+      transition: 0.4s ease;
+  }
+
+  .dwn_btn{
+    text-align: center;
+    top: -80px;
+    position: relative;
+  }
+  
+  #changes{
+    width: 20%;
+    padding: 0px;
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    overflow: hidden;
+    transition: 0.4s ease;
+  }
+  #print, #cancel{
+    background-color: #558B2F;
+    color: #fff;
+    border: none;
+    outline: none;
+    font-family: 'Roboto';
+    cursor: pointer;
+    padding: 6px 22px;
+    font-size: 14px;
+  }
+  section#changes button, section#changes select, section#changes div {
+    margin: 10px 0;
+    width: 200px;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+    font-family: 'Roboto';
+  }
+  @media(max-width:1200px) and (min-width:1024px){
+    section#changes button, section#changes select, section#changes div {
+      width: 150px;
+    }
+    section#changes div {
+      width:130px !important;
+    }
+    #changes{
+      transform: translateX(15px);
+    }
+  
+  }
+
+  section#changes button, section#changes div {
+    background-color: #558B2F;
+    color: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+  section#changes div {
+    width:180px;
+  }
+   
+  .is-editing .restrict{
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.6;
+  }
+  
+
+  /* Additional field */
+  .add_row img, .delete_row img{
+    width: 10px;
+    border: 1px solid #454545;
+    border-radius: 50%;
+    padding: 5px;
+  }
+  .last_table, .last_table td:last-child, .last_table td:first-child{position: relative;}
+  .add_row, .delete_row{
+    position: absolute;
+    bottom: 0;
+    left: -11px;
+    display: grid;
+    justify-content: center;
+  }
+  form.is-readonly .add_row{display: none;}
+
+
+  @media(max-width:1023px){
+    form{display:none}
+    html,body{height:100%}
+    .mobile_only{
+    color: #558B2F;
+    font-size: 22px;
+    display: flex !important;
+    place-content: center;
+    height: 100%;
+    align-items: center;
+    }
+  }
+
+  @media(min-width:1024px){
+    .mobile_only{display:none}
+  }
+

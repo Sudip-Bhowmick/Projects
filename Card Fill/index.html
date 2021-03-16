@@ -1,0 +1,442 @@
+<html><head>
+    <title>Card Fill</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <style>
+        @font-face {
+            font-family: card_font;
+            src: url('TiemposHeadline-Medium.ttf');
+        }
+        html{
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        body {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #drawing_box {
+            width: 50vw;
+            height: 30vw;
+        }
+
+        .paint-canvas {
+            /* border: 1px black solid; */
+            display: block;
+            
+        }
+        .abc, #blank, #yellow{display:none;}
+        .relative{
+            position: relative;
+            width: 100%;
+            height: 100%;
+            /* margin: 1rem; */
+        }
+        .text-container{
+            /* width: 600px;
+            height:350px; */
+            display: grid;
+            align-items: center;
+            margin: 1rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-family: card_font;
+        }
+        .short_detail, .name{
+            position: absolute;
+            top: 0;
+            
+        }
+        .name::after{
+            content: "Lorem ipsum-";
+    position: absolute;
+    top: calc(40vh - 100px);
+    left: 30vw;
+    font-size: 2vw;
+    font-weight: bold;
+    line-height: 0;
+    width: 100vw;
+    pointer-events: none;
+        }
+        .short_detail_one, .short_detail_two{position: absolute;}
+        .short_detail_one::after, .short_detail_two::after,
+        .short_detail_three::after, .short_detail_four::after,
+        .linkedin::after, .sve::after, .ref::after{
+            position: absolute;
+    font-size: 2vw;
+    font-weight: bold;
+    line-height: 0;
+    width: 100vw;
+    display: flex;
+    pointer-events: none;
+    left: 30vw;
+        }
+        .short_detail_one::after{
+            content:"Lorem ipsum dolor sit amet";
+            top: 40vh;
+        }
+        .short_detail_two::after{
+            content:"consectetur adipiscing elit";
+            top: calc(40vh + 50px);
+        }
+        .short_detail_three::after{
+            content:"sed do eiusmod tempor incididunt";
+            top: calc(40vh + 100px);
+        }
+        .short_detail_four::after{
+            content:"ut labore et dolore magna aliqua";
+            top: calc(40vh + 150px);
+        }
+        .linkedin::after{
+            content:"Linkedin";
+            color:#000;
+            top: calc(40vh + 250px);
+    font-size: 1vw;
+    pointer-events: all;
+    cursor: pointer;
+        }
+        .sve::after{
+            content:"Hit \"S\" to save";
+            top: calc(40vh + 250px);
+    left: calc(63vw);
+    font-size: 1vw;
+        }
+        .sve.remove, .ref.remove{
+            display: none;
+        }
+        .ref::after{
+            position:absolute;
+            content: "Hit \"R\" to refresh";
+            top: 0;
+            right:0;
+            left: calc(63vw);
+            font-size:1vw;
+
+        }
+
+        @media(max-width:1024px) and (min-width:769px){
+            .short_detail_one, .short_detail_two{position: absolute;}
+        .short_detail_one::after, .short_detail_two::after,
+        .short_detail_three::after, .short_detail_four::after,
+        .linkedin::after, .sve::after, .name::after{
+            font-size:3vw;
+            left: 20vw;
+        } 
+        .linkedin::after, .sve::after, .ref::after{font-size: 2vw !important;}
+        .sve::after, .ref::after{left: 70vw}
+        .ref::after{top:10vh}
+        }
+
+        @media(max-width:768px) and (min-width:501px){
+            .short_detail_one, .short_detail_two{position: absolute;}
+        .short_detail_one::after, .short_detail_two::after,
+        .short_detail_three::after, .short_detail_four::after,
+        .linkedin::after, .sve::after, .name::after{
+            font-size:4vw;
+            left: 5vw;
+        } 
+        .linkedin::after, .sve::after, .ref::after{font-size: 3vw !important;}
+        .sve::after, .ref::after{left: 70vw}
+        }
+
+        @media(max-width:500px){
+            .short_detail_one, .short_detail_two{position: absolute;}
+        .short_detail_one::after, .short_detail_two::after,
+        .short_detail_three::after, .short_detail_four::after,
+        .linkedin::after, .sve::after, .name::after{
+            font-size:4vw;
+            left: 5vw;
+        } 
+        .linkedin::after, .sve::after{font-size: 3vw !important;top: calc(40vh + 160px);}
+        .sve::after, .ref::after{left: 70vw}
+        .ref::after{font-size: 3vw !important;top:5vh}
+        .short_detail_one::after{
+            top: 40vh;
+        }
+        .short_detail_two::after{
+            top: calc(40vh + 30px);
+        }
+        .short_detail_three::after{
+            top: calc(40vh + 60px);
+        }
+        .short_detail_four::after{
+            top: calc(40vh + 90px);
+        }
+        .name::after{
+            top: calc(40vh - 60px);
+        }
+
+        }
+
+    </style>
+
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.996.0" data-gr-ext-installed="">
+    <div class="relative" id="mydiv">
+    <canvas class="js-paint paint-canvas" id="js-paint"></canvas>
+    <canvas id="blank"></canvas>
+    <canvas id="yellow"></canvas>
+    <div class="text-container">
+        <div class="name"></div>
+        <div class="short_detail_one"></div>
+        <div class="short_detail_two"></div>
+        <div class="short_detail_three"></div>
+        <div class="short_detail_four"></div>
+        <div class="bottom_part">
+            <a class="linkedin" href="https://www.linkedin.com/" target="_blank"></a>
+            <div class="sve"></div>
+            <div class="ref"></div>
+        </div>
+    </div>
+    </div>
+
+    <div id="image"></div>
+
+    <!-- <button id="download_canvas">download</button> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.4.6/processing.min.js" integrity="sha512-qs0N4ld6hTj4OctCxV59EzJ6dVXQZIuP0BARqBOlY9bxquJzwwcLuBeEyvC8WqkuKK7zfb0rgZ2PW3IvAXocJw==" crossorigin="anonymous"></script>
+
+    <script>
+
+
+        $(window).on('load', function() {
+
+            const paintCanvas = document.querySelector('.js-paint');
+            paintCanvas.width  = window.innerWidth;
+            paintCanvas.height = window.innerHeight;
+            const context = paintCanvas.getContext('2d');
+            context.lineCap = 'round';
+            context.lineWidth = 120;
+            context.fillStyle = "#ffffff";
+            context.fillRect(0, 0, paintCanvas.width, paintCanvas.height);
+            context.strokeStyle = "#ffec01";
+            //context.font = 'bold 25px card_font';
+            //context.fillStyle = '#000';
+            //context.fillText("Urvi Raghbeer-", 40, 40 + 25);
+            //context.fillText("Graphic & UIUX designer. Entrepreneur", 40, 40 + 25 + 25 + 30);
+            //context.fillText("All things design, technology and business.", 40, 40 + 25 + 25 + 30 + 30);
+            //context.fillText("Founder & CEO of Outboxy and Welly.", 40, 40 + 25 + 25 + 30 + 30 + 30);
+            //context.fillText("Favourite glyph-em dash.", 40, 40 + 25 + 25 + 30 + 30 + 30 + 30);
+            //context.font = 'bold 15px card_font';
+            //context.fillText("Linkedin", 40, 40 + 25 + 25 + 30 + 30 + 30 + 30 + 15 + 70);
+            //context.fillText('Hit "S" to save ', 450, 40 + 25 + 25 + 30 + 30 + 30 + 30 + 15 + 70);
+
+            var canvasIsFilled = false;
+
+            function rgbToHex(r, g, b) {
+                if (r > 255 || g > 255 || b > 255)
+                    throw "Invalid color component";
+                return ((r << 16) | (g << 8) | b).toString(16);
+            }
+
+            let x = 0,
+                y = 0;
+            let isMouseDown = false;
+            let isTouchDown = false;
+
+
+            function getFilledInPixels(stride) {
+                if (!stride || stride < 1) {
+                    stride = 1;
+                }
+                //console.log(stride);
+                // var pixels = context.getImageData(0, 0, paintCanvas.width, paintCanvas.height),
+                //     pdata = pixels.data,
+                //     l = pdata.length,
+                //     total = (l / stride),
+                //     count = 0;
+                    
+                // // Iterate over all pixels
+                // for (var i = count = 0; i < l; i += stride) {
+                //     if (parseInt(pdata[i]) === 0) {
+                //         count++;
+                //     }
+                // }
+
+                //console.log(Math.round((count / total) * 100));
+                //return Math.round((count / total) * 100);
+            }
+            
+            // function handlePercentage(filledInPixels) {
+            //     filledInPixels = filledInPixels || 0;
+            //     //console.log(filledInPixels + '%');
+            //     if (filledInPixels > 50) {
+            //         //                    canvas.parentNode.removeChild(canvas);
+            //     }
+            // }
+
+
+            const stopDrawing = () => {
+                isMouseDown = false;
+
+
+                            //    for (var i = 0; i <= paintCanvas.height; i++) {
+                            //        for (var j = 0; j <= paintCanvas.width; j++) {
+                            //            var p = context.getImageData(j, i, 1, 1).data;
+                            //            var white = "#" + ("000000" + rgbToHex(p[0], p[1], p[2])).slice(-6);
+                            //            if (white == '#000000') {
+                            //                canvasIsFilled = true;
+                            //            }
+                            //        }
+                            //    }
+                            //    if (canvasIsFilled) {
+                            //        console.log('canvas is not filled');
+                            //    }
+                            //    else{
+                            //     console.log('yes');
+                            //    }
+
+
+
+            }
+
+            
+            
+            const startDrawing = event => {
+                isMouseDown = true;
+                [x, y] = [event.offsetX, event.offsetY];
+                //console.log();
+            }
+            const drawLine = event => {
+                if (isMouseDown) {
+                    const newX = event.offsetX;
+                    const newY = event.offsetY;
+                    context.beginPath();
+                    context.moveTo(x, y);
+                    context.lineTo(newX, newY);
+                    context.stroke();
+                    //[x, y] = [newX, newY];
+                    x = newX;
+                    y = newY;
+                }
+                //handlePercentage(getFilledInPixels(100));
+            }
+
+            const stopTouchDrawing = () => {
+                isTouchDown = false;
+            }
+            const startTouchDrawing = event => {
+                //console.log(event)
+                isTouchDown = true;
+                var touch = event.changedTouches[0];
+                [x, y] = [touch.pageX, touch.pageY];
+            }
+            const drawTouchLine = event => {
+                if (isTouchDown) {
+                    var touch = event.changedTouches[0];
+                    const newX = touch.pageX;
+                    const newY = touch.pageY;
+                    context.beginPath();
+                    context.moveTo(x, y);
+                    context.lineTo(newX, newY);
+                    context.stroke();
+                    //[x, y] = [newX, newY];
+                    x = newX;
+                    y = newY;
+                }
+                handlePercentage(getFilledInPixels(100));
+            }
+
+            paintCanvas.addEventListener('mousedown', startDrawing);
+            paintCanvas.addEventListener('mousemove', drawLine);
+            paintCanvas.addEventListener('mouseup', stopDrawing);
+            paintCanvas.addEventListener('mouseout', stopDrawing);
+
+            paintCanvas.addEventListener('touchstart', startTouchDrawing);
+            paintCanvas.addEventListener('touchmove', drawTouchLine);
+            paintCanvas.addEventListener('touchend', stopTouchDrawing);
+
+                    
+canvass = document.getElementById('blank');
+canvass.width  = window.innerWidth;
+canvass.height = window.innerHeight;
+ctxx = canvass.getContext('2d');
+ctxx.fillStyle = "#ffec01";
+ctxx.fillRect(0, 0, canvass.width, canvass.height);
+
+yellow = document.getElementById('yellow');
+yellow.width  = window.innerWidth;
+yellow.height = window.innerHeight;
+ctxxx = yellow.getContext('2d');
+ctxxx.fillStyle = "#ffffff";
+ctxxx.fillRect(0, 0, yellow.width, yellow.height);
+
+            
+            document.getElementById('js-paint').addEventListener('click',function(){
+                if(paintCanvas.toDataURL() == canvass.toDataURL()){
+                    console.log('white');
+                    context.strokeStyle = "#ffffff";
+                } 
+                else if(paintCanvas.toDataURL() == yellow.toDataURL()){
+                    console.log('yellow');
+                    context.strokeStyle = "#ffec01";
+                    }
+                    else{
+                        console.log('nothing'); 
+                    }
+            });
+
+        });
+
+        
+
+    </script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js" integrity="sha512-s/XK4vYVXTGeUSv4bRPOuxSDmDlTedEpMEcAQk0t/FMd9V6ft8iXdwSBxV0eD60c6w/tjotSlKu9J2AAW1ckTA==" crossorigin="anonymous"></script>    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<script>
+    $('body').bind('keypress', function(e) {
+        if(e.keyCode == 115){
+                        var sve = $('.sve');
+                        sve.addClass('remove');
+                        var ref = $('.ref');
+                        ref.addClass('remove');
+                        setTimeout(function() {
+                            sve.removeClass('remove');
+                            ref.removeClass('remove');
+                        }, 100);
+
+                        html2canvas([document.getElementById('mydiv')], {
+                        onrendered: function (canvas) {
+                            document.getElementById('image').appendChild(canvas);
+                            var data = canvas.toDataURL('image/png');
+                            canvas.className = "abc";
+                            
+                        }
+                    });
+
+                    setTimeout(function(){   
+                        const paintCanvastwo = document.querySelector('.abc:last-child');
+                        var download = function() {
+                        var link = document.createElement('a');
+                        link.download = 'business-card.png';
+                        link.href = paintCanvastwo.toDataURL()
+                        link.click();
+                        }
+                        download();
+                    }, 100);
+    }
+            });
+
+           
+
+            $('body').bind('keypress', function(e) {
+                if(e.keyCode == 114){
+                    window.location.reload();
+                }
+            });
+
+            
+</script>
+
+
+</body>
+</html>
